@@ -21,7 +21,8 @@ import {
   ChevronRight,
   Clock,
   CheckCircle,
-  Copy
+  Copy,
+  MousePointer
 } from "lucide-react";
 import { useState } from "react";
 import { downloadProjectTemplate } from "@/utils/downloadTemplate";
@@ -34,25 +35,29 @@ const Index = () => {
       id: 1,
       title: "Formación de Equipos",
       icon: <Users className="h-6 w-6" />,
-      description: "Organización de participantes en equipos colaborativos"
+      description: "Organización de participantes en equipos colaborativos",
+      details: "Los participantes se organizan en equipos de 3-5 personas, idealmente con perfiles complementarios (técnico, negocio, diseño). Se fomenta la diversidad de habilidades y experiencias para crear equipos equilibrados que puedan abordar todos los aspectos del proyecto."
     },
     {
       id: 2,
       title: "Elección del Proyecto",
       icon: <Lightbulb className="h-6 w-6" />,
-      description: "Selección de ideas del catálogo o propuestas propias"
+      description: "Selección de ideas del catálogo o propuestas propias",
+      details: "Los equipos pueden elegir entre las ideas predefinidas del catálogo o proponer sus propias ideas innovadoras. Se valora la originalidad, viabilidad técnica y potencial de impacto. Los mentores ayudan a validar y refinar las propuestas iniciales."
     },
     {
       id: 3,
       title: "Desarrollo del Proyecto",
       icon: <Wrench className="h-6 w-6" />,
-      description: "Implementación usando herramientas de IA"
+      description: "Implementación usando herramientas de IA",
+      details: "Fase principal donde los equipos desarrollan sus soluciones utilizando las herramientas de IA disponibles. Se incluye prototipado, validación de conceptos, desarrollo del modelo de negocio y preparación de materiales de presentación. Los mentores proporcionan apoyo técnico y estratégico."
     },
     {
       id: 4,
       title: "Presentación Final",
       icon: <Presentation className="h-6 w-6" />,
-      description: "Pitch del proyecto ante jurado y participantes"
+      description: "Pitch del proyecto ante jurado y participantes",
+      details: "Cada equipo presenta su proyecto en un pitch de 4 minutos seguido de preguntas. Se evalúa la innovación, viabilidad técnica, potencial de mercado y calidad de la presentación. El jurado está compuesto por expertos en IA, emprendimiento y tecnología."
     }
   ];
 
@@ -129,17 +134,61 @@ const Index = () => {
   ];
 
   const projectIdeas = [
-    "SaaS de Gestión de Contratos Inteligente",
-    "Plataforma de Onboarding Automatizado",
-    "Marketplace de Servicios de IA",
-    "Asistente de Negociación de Contratos",
-    "Micro-Consultorías On-Demand",
-    "Reservas Instantáneas de Espacios",
-    "Kit de Inmersión Lingüística",
-    "Agrupador de Opiniones B2B",
-    "Marketplace de Creativos Freelance",
-    "Carsharing Corporativo Interno",
-    "Gestión de Contratos con Influencers"
+    {
+      title: "SaaS de Gestión de Contratos Inteligente",
+      description: "Plataforma que utiliza IA para automatizar la creación, revisión y gestión de contratos empresariales.",
+      details: "Sistema que analiza automáticamente cláusulas contractuales, sugiere mejoras, detecta riesgos y facilita la negociación mediante IA conversacional."
+    },
+    {
+      title: "Plataforma de Onboarding Automatizado",
+      description: "Solución de IA para personalizar y automatizar procesos de incorporación de empleados.",
+      details: "Chatbot inteligente que guía a nuevos empleados, genera material formativo personalizado y adapta el proceso según el rol y experiencia."
+    },
+    {
+      title: "Marketplace de Servicios de IA",
+      description: "Plataforma que conecta empresas con soluciones de IA especializadas.",
+      details: "Ecosistema donde empresas pueden encontrar y contratar servicios específicos de IA, con sistema de recomendaciones y validación de calidad."
+    },
+    {
+      title: "Asistente de Negociación de Contratos",
+      description: "IA que asiste en negociaciones comerciales analizando términos y sugiriendo estrategias.",
+      details: "Herramienta que analiza historiales de negociación, identifica patrones exitosos y proporciona recomendaciones tácticas en tiempo real."
+    },
+    {
+      title: "Micro-Consultorías On-Demand",
+      description: "Plataforma que conecta expertos con empresas para consultoría inmediata.",
+      details: "Sistema de matching inteligente que conecta empresas con consultores especializados para sesiones cortas y específicas de resolución de problemas."
+    },
+    {
+      title: "Reservas Instantáneas de Espacios",
+      description: "Sistema de IA para optimizar la reserva y uso de espacios corporativos.",
+      details: "Plataforma que predice demanda de espacios, optimiza asignaciones y facilita reservas automáticas basadas en patrones de uso y preferencias."
+    },
+    {
+      title: "Kit de Inmersión Lingüística",
+      description: "Solución de IA para aprendizaje personalizado de idiomas en contextos profesionales.",
+      details: "Sistema que crea experiencias de aprendizaje inmersivas usando IA conversacional, reconocimiento de voz y generación de contenido contextual."
+    },
+    {
+      title: "Agrupador de Opiniones B2B",
+      description: "Plataforma que recopila y analiza feedback de clientes empresariales usando IA.",
+      details: "Herramienta que consolida opiniones de múltiples canales, identifica tendencias y genera insights accionables para mejora de productos/servicios."
+    },
+    {
+      title: "Marketplace de Creativos Freelance",
+      description: "Plataforma con IA para matching óptimo entre proyectos creativos y freelancers.",
+      details: "Sistema que analiza portfolios, estilos creativos y requirements de proyectos para generar matches perfectos y facilitar colaboraciones."
+    },
+    {
+      title: "Carsharing Corporativo Interno",
+      description: "Sistema de IA para optimizar el uso compartido de vehículos corporativos.",
+      details: "Plataforma que gestiona reservas, optimiza rutas, predice demanda y facilita el uso eficiente de la flota corporativa."
+    },
+    {
+      title: "Gestión de Contratos con Influencers",
+      description: "Herramienta de IA para automatizar y optimizar colaboraciones con influencers.",
+      details: "Sistema que analiza métricas de influencers, automatiza negociaciones, gestiona contratos y mide ROI de campañas de marketing de influencia."
+    }
   ];
 
   const templateContent = `# Documento de Trabajo del Proyecto - Sesión de Trabajo de IA
@@ -309,27 +358,53 @@ Documento generado por hackiNNg.guide`;
             <p className="text-muted-foreground max-w-2xl mx-auto">
               La sesión de trabajo se estructura en cuatro fases que guían desde la concepción hasta la presentación
             </p>
+            <p className="text-sm text-muted-foreground mt-2 flex items-center justify-center">
+              <MousePointer className="h-4 w-4 mr-1" />
+              Haz clic en cada fase para ver más detalles
+            </p>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {phases.map((phase, index) => (
-              <Card key={phase.id} className="relative overflow-hidden group hover:shadow-lg transition-all duration-300">
-                <CardHeader className="pb-3">
-                  <div className="flex items-center space-x-3">
-                    <div className="bg-primary/10 text-primary p-2 rounded-lg">
-                      {phase.icon}
-                    </div>
-                    <Badge variant="secondary">Fase {phase.id}</Badge>
+              <Dialog key={phase.id}>
+                <DialogTrigger asChild>
+                  <Card className="relative overflow-hidden group hover:shadow-lg transition-all duration-300 cursor-pointer">
+                    <CardHeader className="pb-3">
+                      <div className="flex items-center space-x-3">
+                        <div className="bg-primary/10 text-primary p-2 rounded-lg">
+                          {phase.icon}
+                        </div>
+                        <Badge variant="secondary">Fase {phase.id}</Badge>
+                      </div>
+                      <CardTitle className="text-lg">{phase.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <CardDescription className="text-sm leading-relaxed">
+                        {phase.description}
+                      </CardDescription>
+                    </CardContent>
+                    <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-primary to-purple-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+                  </Card>
+                </DialogTrigger>
+                <DialogContent className="max-w-2xl">
+                  <DialogHeader>
+                    <DialogTitle className="flex items-center text-xl">
+                      <div className="bg-primary/10 text-primary p-2 rounded-lg mr-3">
+                        {phase.icon}
+                      </div>
+                      Fase {phase.id}: {phase.title}
+                    </DialogTitle>
+                    <DialogDescription>
+                      {phase.description}
+                    </DialogDescription>
+                  </DialogHeader>
+                  <div className="mt-4">
+                    <p className="text-sm leading-relaxed text-muted-foreground">
+                      {phase.details}
+                    </p>
                   </div>
-                  <CardTitle className="text-lg">{phase.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-sm leading-relaxed">
-                    {phase.description}
-                  </CardDescription>
-                </CardContent>
-                <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-primary to-purple-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-              </Card>
+                </DialogContent>
+              </Dialog>
             ))}
           </div>
         </section>
@@ -427,16 +502,41 @@ Documento generado por hackiNNg.guide`;
               <CardDescription>
                 Ideas inspiradoras para comenzar vuestro proyecto de sesión de trabajo
               </CardDescription>
+              <p className="text-sm text-muted-foreground flex items-center">
+                <MousePointer className="h-4 w-4 mr-1" />
+                Haz clic en cada idea para ver más detalles
+              </p>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-2 gap-3">
                 {projectIdeas.map((idea, index) => (
-                  <div key={index} className="flex items-center space-x-3 p-3 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors">
-                    <div className="bg-primary/20 text-primary p-1.5 rounded">
-                      <ChevronRight className="h-3 w-3" />
-                    </div>
-                    <span className="text-sm font-medium">{idea}</span>
-                  </div>
+                  <Dialog key={index}>
+                    <DialogTrigger asChild>
+                      <div className="flex items-center space-x-3 p-3 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors cursor-pointer group">
+                        <div className="bg-primary/20 text-primary p-1.5 rounded group-hover:bg-primary/30 transition-colors">
+                          <ChevronRight className="h-3 w-3" />
+                        </div>
+                        <span className="text-sm font-medium">{idea.title}</span>
+                      </div>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-2xl">
+                      <DialogHeader>
+                        <DialogTitle className="flex items-center text-xl">
+                          <Lightbulb className="h-5 w-5 mr-2 text-primary" />
+                          {idea.title}
+                        </DialogTitle>
+                        <DialogDescription>
+                          {idea.description}
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="mt-4">
+                        <h4 className="font-semibold mb-2">Descripción detallada:</h4>
+                        <p className="text-sm leading-relaxed text-muted-foreground">
+                          {idea.details}
+                        </p>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
                 ))}
               </div>
             </CardContent>
