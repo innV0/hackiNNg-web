@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -23,6 +22,7 @@ import {
   CheckCircle
 } from "lucide-react";
 import { useState } from "react";
+import { downloadProjectTemplate } from "@/utils/downloadTemplate";
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState<string>("overview");
@@ -140,6 +140,10 @@ const Index = () => {
     "Gestión de Contratos con Influencers"
   ];
 
+  const handleDownloadTemplate = () => {
+    downloadProjectTemplate();
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -178,7 +182,7 @@ const Index = () => {
                 Comenzar Hackathon
                 <ChevronRight className="h-4 w-4 ml-1" />
               </Button>
-              <Button variant="outline" size="lg">
+              <Button variant="outline" size="lg" onClick={handleDownloadTemplate}>
                 <FileText className="h-4 w-4 mr-2" />
                 Descargar Plantilla
               </Button>
@@ -402,7 +406,7 @@ const Index = () => {
             Descarga la plantilla del proyecto y comienza a desarrollar tu idea innovadora con IA
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button size="lg" className="bg-gradient-to-r from-primary to-purple-600">
+            <Button size="lg" className="bg-gradient-to-r from-primary to-purple-600" onClick={handleDownloadTemplate}>
               <FileText className="h-4 w-4 mr-2" />
               Descargar Plantilla
             </Button>
