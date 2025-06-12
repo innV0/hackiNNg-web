@@ -161,7 +161,7 @@ const Index = () => {
             </div>
             <Badge variant="outline" className="hidden md:flex">
               <Clock className="h-3 w-3 mr-1" />
-              Hackathon de IA
+              Sesión de Trabajo de IA
             </Badge>
           </div>
         </div>
@@ -172,14 +172,14 @@ const Index = () => {
         <section className="text-center mb-12">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-              Guía Completa del Hackathon de IA
+              Guía Completa de la Sesión de Trabajo de IA
             </h2>
             <p className="text-xl text-muted-foreground mb-8">
               Una experiencia intensiva y colaborativa para crear soluciones innovadoras con inteligencia artificial
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button size="lg" className="bg-gradient-to-r from-primary to-purple-600">
-                Comenzar Hackathon
+                Comenzar Sesión de Trabajo
                 <ChevronRight className="h-4 w-4 ml-1" />
               </Button>
               <Button variant="outline" size="lg" onClick={handleDownloadTemplate}>
@@ -195,7 +195,7 @@ const Index = () => {
           <div className="text-center mb-8">
             <h3 className="text-3xl font-bold mb-4 flex items-center justify-center">
               <Target className="h-8 w-8 mr-3 text-primary" />
-              Objetivos del Hackathon
+              Objetivos de la Sesión de Trabajo
             </h3>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Estos son los principales objetivos que perseguimos durante esta experiencia intensiva
@@ -219,9 +219,9 @@ const Index = () => {
         {/* Phases Section */}
         <section className="mb-12">
           <div className="text-center mb-8">
-            <h3 className="text-3xl font-bold mb-4">Fases del Hackathon</h3>
+            <h3 className="text-3xl font-bold mb-4">Fases de la Sesión de Trabajo</h3>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              El hackathon se estructura en cuatro fases que guían desde la concepción hasta la presentación
+              La sesión de trabajo se estructura en cuatro fases que guían desde la concepción hasta la presentación
             </p>
           </div>
           
@@ -339,7 +339,7 @@ const Index = () => {
                 Catálogo de Ideas para Proyectos
               </CardTitle>
               <CardDescription>
-                Ideas inspiradoras para comenzar vuestro proyecto de hackathon
+                Ideas inspiradoras para comenzar vuestro proyecto de sesión de trabajo
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -360,7 +360,7 @@ const Index = () => {
         {/* Roles Section */}
         <section className="mb-12">
           <div className="text-center mb-8">
-            <h3 className="text-3xl font-bold mb-4">Roles en el Hackathon</h3>
+            <h3 className="text-3xl font-bold mb-4">Roles en la Sesión de Trabajo</h3>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Diferentes responsabilidades para asegurar el éxito del evento
             </p>
@@ -373,7 +373,7 @@ const Index = () => {
                   <Users className="h-6 w-6" />
                 </div>
                 <CardTitle>Facilitador</CardTitle>
-                <CardDescription>Guía el proceso general del hackathon</CardDescription>
+                <CardDescription>Guía el proceso general de la sesión de trabajo</CardDescription>
               </CardHeader>
             </Card>
             

@@ -1,7 +1,7 @@
 
 export const downloadProjectTemplate = () => {
   const templateContent = `
-# Documento de Trabajo del Proyecto - Hackathon de IA
+# Documento de Trabajo del Proyecto - Sesión de Trabajo de IA
 
 ## Equipo
 | Nombre | Rol | E-mail |
@@ -46,7 +46,7 @@ Documento generado por hackiNNg.guide
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = 'plantilla-proyecto-hackathon.md';
+  a.download = 'plantilla-proyecto-sesion-trabajo.md';
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
