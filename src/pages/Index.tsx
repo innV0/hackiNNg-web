@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { 
   Target, 
   Users, 
@@ -19,7 +20,8 @@ import {
   Palette,
   ChevronRight,
   Clock,
-  CheckCircle
+  CheckCircle,
+  Copy
 } from "lucide-react";
 import { useState } from "react";
 import { downloadProjectTemplate } from "@/utils/downloadTemplate";
@@ -140,8 +142,53 @@ const Index = () => {
     "Gestión de Contratos con Influencers"
   ];
 
-  const handleDownloadTemplate = () => {
-    downloadProjectTemplate();
+  const templateContent = `# Documento de Trabajo del Proyecto - Sesión de Trabajo de IA
+
+## Equipo
+| Nombre | Rol | E-mail |
+|--------|-----|--------|
+| [Nombre del miembro 1] | [Rol del miembro 1] | [Email del miembro 1] |
+| [Nombre del miembro 2] | [Rol del miembro 2] | [Email del miembro 2] |
+| [Nombre del miembro 3] | [Rol del miembro 3] | [Email del miembro 3] |
+
+## Modelo de negocio
+
+### Cliente
+Descripción detallada del cliente objetivo.
+
+### Problema
+Descripción clara del problema, necesidad o deseo que se está resolviendo y su impacto en el cliente.
+
+### Solución
+Descripción de la solución propuesta. ¿Qué herramientas de IA utiliza y cómo? ¿Qué valor aportan?
+
+### Propuesta de valor
+Beneficios únicos que ofrece la solución y por qué el cliente la elegiría sobre otras.
+
+## Anexos
+Espacio para investigación de mercado, análisis de competencia, material de apoyo, etc.
+
+---
+
+## Estructura del Pitch (4 minutos)
+
+1. **Introducción (20 segundos):** Saludo y resumen del problema que abordáis.
+2. **Descripción del problema (1 minuto):** ¿Quién es vuestro cliente y qué problema tiene?
+3. **Descripción de la solución (2 minutos):** Explicad cómo funciona vuestra solución, las tecnologías de IA utilizadas, la propuesta de valor y, si es posible, mostrad una demo.
+4. **Plan (30 segundos):** Mencionad los próximos pasos o posibles mejoras.
+5. **Conclusión (30 segundos):** Resumid los puntos clave de vuestro proyecto.
+
+---
+
+Documento generado por hackiNNg.guide`;
+
+  const handleCopyTemplate = async () => {
+    try {
+      await navigator.clipboard.writeText(templateContent);
+      console.log('Plantilla copiada al portapapeles');
+    } catch (err) {
+      console.error('Error al copiar:', err);
+    }
   };
 
   return (
@@ -177,15 +224,54 @@ const Index = () => {
             <p className="text-xl text-muted-foreground mb-8">
               Una experiencia intensiva y colaborativa para crear soluciones innovadoras con inteligencia artificial
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Button size="lg" className="bg-gradient-to-r from-primary to-purple-600">
-                Comenzar Sesión de Trabajo
-                <ChevronRight className="h-4 w-4 ml-1" />
-              </Button>
-              <Button variant="outline" size="lg" onClick={handleDownloadTemplate}>
-                <FileText className="h-4 w-4 mr-2" />
-                Descargar Plantilla
-              </Button>
+            <div className="flex justify-center">
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button variant="outline" size="lg">
+                    <FileText className="h-4 w-4 mr-2" />
+                    Ver Plantilla
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+                  <DialogHeader>
+                    <DialogTitle className="flex items-center text-xl">
+                      <FileText className="h-5 w-5 mr-2" />
+                      Plantilla del Proyecto
+                    </DialogTitle>
+                    <DialogDescription>
+                      Copia este contenido y pégalo en tu documento de trabajo
+                    </DialogDescription>
+                  </DialogHeader>
+                  <div className="space-y-4">
+                    <div className="bg-muted p-4 rounded-lg">
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="text-sm font-medium">Contenido de la plantilla:</span>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={handleCopyTemplate}
+                          className="flex items-center gap-2"
+                        >
+                          <Copy className="h-3 w-3" />
+                          Copiar todo
+                        </Button>
+                      </div>
+                      <pre className="text-sm whitespace-pre-wrap font-mono bg-background p-4 rounded border max-h-96 overflow-y-auto">
+                        {templateContent}
+                      </pre>
+                    </div>
+                    <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
+                      <h4 className="font-semibold text-blue-900 mb-2">Instrucciones:</h4>
+                      <ol className="text-sm text-blue-800 space-y-1">
+                        <li>1. Haz clic en "Copiar todo" para copiar la plantilla completa</li>
+                        <li>2. Pega el contenido en tu editor de texto favorito (Word, Google Docs, Notion, etc.)</li>
+                        <li>3. Completa cada sección con la información de tu proyecto</li>
+                        <li>4. Usa esta plantilla como guía durante toda la sesión de trabajo</li>
+                      </ol>
+                    </div>
+                  </div>
+                </DialogContent>
+              </Dialog>
             </div>
           </div>
         </section>
@@ -403,17 +489,55 @@ const Index = () => {
         <section className="text-center py-12 bg-gradient-to-r from-primary/5 to-purple-600/5 rounded-2xl">
           <h3 className="text-2xl font-bold mb-4">¿Listo para comenzar?</h3>
           <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-            Descarga la plantilla del proyecto y comienza a desarrollar tu idea innovadora con IA
+            Usa la plantilla del proyecto para desarrollar tu idea innovadora con IA
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button size="lg" className="bg-gradient-to-r from-primary to-purple-600" onClick={handleDownloadTemplate}>
-              <FileText className="h-4 w-4 mr-2" />
-              Descargar Plantilla
-            </Button>
-            <Button variant="outline" size="lg">
-              Contactar Mentores
-            </Button>
-          </div>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button size="lg" className="bg-gradient-to-r from-primary to-purple-600">
+                <FileText className="h-4 w-4 mr-2" />
+                Ver Plantilla
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+              <DialogHeader>
+                <DialogTitle className="flex items-center text-xl">
+                  <FileText className="h-5 w-5 mr-2" />
+                  Plantilla del Proyecto
+                </DialogTitle>
+                <DialogDescription>
+                  Copia este contenido y pégalo en tu documento de trabajo
+                </DialogDescription>
+              </DialogHeader>
+              <div className="space-y-4">
+                <div className="bg-muted p-4 rounded-lg">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-sm font-medium">Contenido de la plantilla:</span>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={handleCopyTemplate}
+                      className="flex items-center gap-2"
+                    >
+                      <Copy className="h-3 w-3" />
+                      Copiar todo
+                    </Button>
+                  </div>
+                  <pre className="text-sm whitespace-pre-wrap font-mono bg-background p-4 rounded border max-h-96 overflow-y-auto">
+                    {templateContent}
+                  </pre>
+                </div>
+                <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
+                  <h4 className="font-semibold text-blue-900 mb-2">Instrucciones:</h4>
+                  <ol className="text-sm text-blue-800 space-y-1">
+                    <li>1. Haz clic en "Copiar todo" para copiar la plantilla completa</li>
+                    <li>2. Pega el contenido en tu editor de texto favorito (Word, Google Docs, Notion, etc.)</li>
+                    <li>3. Completa cada sección con la información de tu proyecto</li>
+                    <li>4. Usa esta plantilla como guía durante toda la sesión de trabajo</li>
+                  </ol>
+                </div>
+              </div>
+            </DialogContent>
+          </Dialog>
         </section>
       </div>
     </div>
